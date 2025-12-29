@@ -72,6 +72,20 @@
             return titkos;
         }
 
+        static string Visszafejt(string titkos, string kulcs)
+        {
+            string eredeti = "";
+            int hossz = Math.Min(titkos.Length, kulcs.Length);
+            for (int i = 0; i < hossz; i++)
+            {
+                int titkosKod = KarakterKodda(titkos[i]);
+                int kulcsKod = KarakterKodda(kulcs[i]);
+                if (titkosKod != -1 && kulcsKod != -1)
+                    eredeti += KodbolKarakter((titkosKod - kulcsKod + 27) % 27);
+            }
+            return eredeti;
+        }
+
         static void Main()
         {
             Console.Write("Rejtjelezendő szöveg: ");
@@ -84,7 +98,10 @@
             KodokatKiir("Kulcs  kódok", kulcs);
             OsszeadottKodokatKiir(uzenet, kulcs);
             ModKodokatKiir(uzenet, kulcs);
-            Console.WriteLine("Rejtjelezett üzenet: " + Titkosit(uzenet, kulcs));
+            string titkositott = Titkosit(uzenet, kulcs);
+            Console.WriteLine("Visszafejtett üzenet: " + Visszafejt(titkositott, kulcs));
+
+
         }
     }
 
