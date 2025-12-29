@@ -94,6 +94,12 @@
             Console.Write("Kulcs: ");
             string kulcs = Console.ReadLine();
 
+            if (uzenet.Length > kulcs.Length)
+            {
+                Console.WriteLine("Hiba: A rejtjelezendő szöveg hosszabb, mint a kulcs!");
+                return;
+            }
+
             KodokatKiir("Üzenet kódok", uzenet);
             KodokatKiir("Kulcs  kódok", kulcs);
             OsszeadottKodokatKiir(uzenet, kulcs);
