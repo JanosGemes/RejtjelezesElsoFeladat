@@ -88,24 +88,50 @@
 
         static void Main()
         {
-            Console.Write("Rejtjelezendő szöveg: ");
-            string uzenet = Console.ReadLine();
+            Console.WriteLine("Valassz muveletet:");
+            Console.WriteLine("1 - Rejtjelezes");
+            Console.WriteLine("2 - Visszafejtes");
+            Console.Write("Valasztas: ");
+            string valasztas = Console.ReadLine();
 
-            Console.Write("Kulcs: ");
-            string kulcs = Console.ReadLine();
-
-            if (uzenet.Length > kulcs.Length)
+            if (valasztas == "1")
             {
-                Console.WriteLine("Hiba: A rejtjelezendő szöveg hosszabb, mint a kulcs!");
-                return;
-            }
+                Console.Write("Rejtjelezendo szoveg: ");
+                string uzenet = Console.ReadLine();
 
-            KodokatKiir("Üzenet kódok", uzenet);
-            KodokatKiir("Kulcs  kódok", kulcs);
-            OsszeadottKodokatKiir(uzenet, kulcs);
-            ModKodokatKiir(uzenet, kulcs);
-            string titkositott = Titkosit(uzenet, kulcs);
-            Console.WriteLine("Visszafejtett üzenet: " + Visszafejt(titkositott, kulcs));
+                Console.Write("Kulcs: ");
+                string kulcs = Console.ReadLine();
+
+                if (uzenet.Length > kulcs.Length)
+                {
+                    Console.WriteLine("Hiba: A rejtjelezendo szoveg hosszabb, mint a kulcs!");
+                    return;
+                }
+
+                string titkos = Titkosit(uzenet, kulcs);
+                Console.WriteLine("Rejtjelezett szoveg: " + titkos);
+            }
+            else if (valasztas == "2")
+            {
+                Console.Write("Rejtjelezett szoveg: ");
+                string titkos = Console.ReadLine();
+
+                Console.Write("Kulcs: ");
+                string kulcs = Console.ReadLine();
+
+                if (titkos.Length > kulcs.Length)
+                {
+                    Console.WriteLine("Hiba: A rejtjelezett szoveg hosszabb, mint a kulcs!");
+                    return;
+                }
+
+                string visszafejtett = Visszafejt(titkos, kulcs);
+                Console.WriteLine("Visszafejtett szoveg: " + visszafejtett);
+            }
+            else
+            {
+                Console.WriteLine("Ervenytelen valasztas.");
+            }
 
 
         }
