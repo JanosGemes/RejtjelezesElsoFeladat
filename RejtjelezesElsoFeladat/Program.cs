@@ -1,5 +1,6 @@
 ﻿namespace RejtjelezesElsoFeladat
 {
+
     class Program
     {
         // Karaktert alapertelmezett kodda alakitja:
@@ -21,6 +22,13 @@
                 if (kod != -1) Console.Write(kod + " ");
             }
             Console.WriteLine();
+        }
+
+        static char KodbolKarakter(int kod)
+        {
+            if (kod == 26) return ' ';
+            if (kod >= 0 && kod <= 25) return (char)('a' + kod);
+            return '?';
         }
 
         static void OsszeadottKodokatKiir(string uzenet, string kulcs)
@@ -50,6 +58,19 @@
             }
             Console.WriteLine();
         }
+        static string Titkosit(string uzenet, string kulcs)
+        {
+            string titkos = "";
+            int hossz = Math.Min(uzenet.Length, kulcs.Length);
+            for (int i = 0; i < hossz; i++)
+            {
+                int uzenetKod = KarakterKodda(uzenet[i]);
+                int kulcsKod = KarakterKodda(kulcs[i]);
+                if (uzenetKod != -1 && kulcsKod != -1)
+                    titkos += KodbolKarakter((uzenetKod + kulcsKod) % 27);
+            }
+            return titkos;
+        }
 
         static void Main()
         {
@@ -63,6 +84,7 @@
             KodokatKiir("Kulcs  kódok", kulcs);
             OsszeadottKodokatKiir(uzenet, kulcs);
             ModKodokatKiir(uzenet, kulcs);
+            Console.WriteLine("Rejtjelezett üzenet: " + Titkosit(uzenet, kulcs));
         }
     }
 
