@@ -28,8 +28,11 @@
             Console.Write("Rejtjelezendő szöveg: ");
             string uzenet = Console.ReadLine();
 
-            KodokatKiir("Üzenet kódok", uzenet);
+            Console.Write("Kulcs: ");
+            string kulcs = Console.ReadLine();
 
+            KodokatKiir("Üzenet kódok", uzenet);
+            KodokatKiir("Kulcs  kódok", kulcs);
         }
     }
 }
