@@ -37,6 +37,20 @@
             Console.WriteLine();
         }
 
+        static void ModKodokatKiir(string uzenet, string kulcs)
+        {
+            Console.Write("Mod 27 kodok: ");
+            int hossz = Math.Min(uzenet.Length, kulcs.Length);
+            for (int i = 0; i < hossz; i++)
+            {
+                int uzenetKod = KarakterKodda(uzenet[i]);
+                int kulcsKod = KarakterKodda(kulcs[i]);
+                if (uzenetKod != -1 && kulcsKod != -1)
+                    Console.Write((uzenetKod + kulcsKod) % 27 + " ");
+            }
+            Console.WriteLine();
+        }
+
         static void Main()
         {
             Console.Write("Rejtjelezendő szöveg: ");
@@ -48,6 +62,8 @@
             KodokatKiir("Üzenet kódok", uzenet);
             KodokatKiir("Kulcs  kódok", kulcs);
             OsszeadottKodokatKiir(uzenet, kulcs);
+            ModKodokatKiir(uzenet, kulcs);
         }
     }
+
 }
